@@ -82,17 +82,17 @@ def solve(board, blocks)
   if blocks.empty?
     puts 'SOLUTION'
     print_board(board)
-    exit(0)
-  end
+    # exit(0)
+  else
+    new_blocks = blocks.dup
+    next_piece = new_blocks.shift
 
-  new_blocks = blocks.dup
-  next_piece = new_blocks.shift
-
-  available_coords(height(next_piece), board).each do |r,c|
-    if valid?(board, r, c, color(next_piece))
-      new_board = duplicate(board)
-      new_board[r][c] = next_piece
-      solve(new_board, new_blocks)
+    available_coords(height(next_piece), board).each do |r,c|
+      if valid?(board, r, c, color(next_piece))
+        new_board = duplicate(board)
+        new_board[r][c] = next_piece
+        solve(new_board, new_blocks)
+      end
     end
   end
 end
